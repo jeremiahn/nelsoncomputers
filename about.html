@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>About Us | RVA Mac</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nelson Computers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* --- SHARED STYLES --- */
         :root {
@@ -14,183 +18,292 @@
             --accent-blue: #0071e3;
             --accent-hover: #0077ed;
             --nav-bg: rgba(255, 255, 255, 0.8);
-            --glass-blur: saturate(180%) blur(20px);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-main);
-            line-height: 1.5;
+            background-color: var(--bg-color);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
 
-        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
         a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 
         /* --- NAVIGATION --- */
-        nav {
+        header {
             position: fixed;
             top: 0;
             width: 100%;
             height: 48px;
             background: var(--nav-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
-        .nav-container {
+        nav {
+            max-width: 980px;
             width: 100%;
-            max-width: 1000px;
+            height: 100%;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
+            font-size: 12px;
+            font-weight: 400;
         }
 
-        .logo { font-weight: 600; font-size: 16px; }
-        .back-link { font-size: 12px; color: var(--accent-blue); font-weight: 500; }
-        .back-link:hover { text-decoration: underline; }
+        .nav-logo {
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-logo img { height: 20px; width: auto; }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a:hover { color: var(--accent-blue); }
 
         /* --- HERO SECTION --- */
-        .hero {
-            padding: 160px 20px 80px;
+        .about-hero {
+            padding: 180px 20px 100px;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .hero h1 { font-size: 56px; line-height: 1.1; margin-bottom: 30px; }
-        
-        .mission-text {
-            font-size: 24px;
-            color: var(--text-secondary);
-            line-height: 1.4;
-            max-width: 750px;
-            margin: 0 auto;
+        .about-hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.005em;
+            margin-bottom: 30px;
+            line-height: 1.1;
         }
 
-        /* --- THE TEAM / FOUNDER SECTION --- */
-        .bg-grey { background-color: var(--bg-secondary); padding: 100px 20px; }
-        
-        .profile-container {
+        .about-hero p {
+            font-size: 24px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* --- STORY SECTION --- */
+        .story-section {
+            padding: 80px 20px;
+            background-color: var(--bg-secondary);
+        }
+
+        .story-container {
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: center; /* Vertically centers the text with the image */
-            gap: 60px;
-            text-align: left;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 4px 8px 24px rgba(0,0,0,0.08);
-            flex-shrink: 0; /* Prevents image from squishing */
-        }
-
-        .profile-content h2 { font-size: 40px; margin-bottom: 10px; }
-        .profile-role { 
-            color: var(--accent-blue); 
-            font-size: 19px; 
-            font-weight: 600; 
-            margin-bottom: 25px; 
-            display: block; 
-        }
-        .profile-bio { font-size: 17px; color: var(--text-secondary); margin-bottom: 30px; }
-        
-        .linkedin-btn {
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 80px;
+        }
+
+        .story-image {
+            flex: 1;
+            /* Using aspect-ratio ensures it stays square but responsive */
+            aspect-ratio: 1 / 1; 
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-text {
+            flex: 1.2;
+        }
+
+        .story-text h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .story-text p {
+            font-size: 18px;
+            color: #424245;
+            margin-bottom: 20px;
+        }
+
+        /* --- VALUES GRID --- */
+        .values-section {
+            padding: 100px 20px;
+            background-color: var(--bg-color);
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .values-header h2 { font-size: 40px; font-weight: 700; }
+
+        .values-grid {
+            max-width: 980px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .value-card h3 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- CONTACT CTA --- */
+        .cta-section {
+            background-color: #f5f5f7;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .cta-section h2 { font-size: 36px; margin-bottom: 20px; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-blue);
             color: white;
-            background-color: #0077b5; /* LinkedIn Blue */
-            padding: 10px 20px;
+            padding: 12px 30px;
             border-radius: 980px;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 500;
+            margin-top: 10px;
             transition: background 0.2s;
         }
-        .linkedin-btn:hover { background-color: #006097; }
+        
+        .btn:hover { background-color: var(--accent-hover); }
 
         /* --- FOOTER --- */
         footer {
-            background: var(--bg-secondary);
+            background-color: var(--bg-secondary);
             padding: 40px 20px;
-            text-align: center;
+            border-top: 1px solid #d2d2d7;
             font-size: 12px;
             color: var(--text-secondary);
-            border-top: 1px solid #d2d2d7;
+            text-align: center;
         }
 
         /* --- MOBILE RESPONSIVE --- */
-        @media (max-width: 800px) {
-            .hero h1 { font-size: 40px; }
-            .mission-text { font-size: 20px; }
+        @media (max-width: 768px) {
+            .about-hero h1 { font-size: 40px; }
+            .about-hero p { font-size: 20px; }
             
-            /* Stack the profile on mobile */
-            .profile-container {
+            .story-container {
                 flex-direction: column;
                 text-align: center;
-                gap: 30px;
+                gap: 40px;
             }
-            .profile-img { width: 200px; height: 200px; }
+
+            .story-image {
+                width: 100%;
+                max-width: 300px; /* Limits size on mobile */
+                margin: 0 auto;
+            }
+
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">RVA Mac</a>
-            <a href="index.html" class="back-link">Close ✕</a>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <a href="index.html" class="nav-logo">
+                Nelson Computers
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-    <section class="hero">
-        <h1>About RVA Mac.</h1>
-        <p class="mission-text">
-            We started RVA Mac with a simple mission: to provide technical support that feels human. 
-            Whether you are a creative professional, a small business owner, or just need your laptop fixed, 
-            we treat your technology with the precision and care it deserves.
-        </p>
+    <section class="about-hero">
+        <h1>Technology, Humanized.</h1>
+        <p>We believe technology should work for you, not against you.</p>
     </section>
 
-    <section class="bg-grey">
-        <div class="profile-container">
-            <img src="IMG_1738.jpg" 
-                 alt="Jeremiah Nelson" 
-                 class="profile-img">
-            
-            <div class="profile-content">
-                <h2>Jeremiah Nelson</h2>
-                <span class="profile-role">Owner & Lead Consultant</span>
-                
-                <p class="profile-bio">
-                    With extensive experience in technical support and IT consultation, Jeremiah founded RVA Mac to bridge the gap between complex enterprise technology and personal service.
-                    <br><br>
-                    We believe that great support isn't just about fixing computers—it's about empowering the people who use them. Our background ensures that RVA Mac delivers the rigorous standards of corporate IT with the friendly, accessible touch of a local business.
-                </p>
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-image">
+                <img src="IMG_1738.jpg" alt="Jeremiah Nelson">
+            </div>
+            <div class="story-text">
+                <h2>Our Mission</h2>
+                <p>With over 15 years of technology experience, Nelson Computers was founded to bring transparency and modern efficiency to the repair industry.</p>
+                <p>Too often, tech support feels complicated, expensive, and intimidating. We are here to change that.</p>
+                <p><strong>No jargon. No hidden fees. Just clean, functioning tech.</strong></p>
             </div>
         </div>
     </section>
 
+    <section class="values-section">
+        <div class="values-header">
+            <h2>The Nelson Computers Standard.</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <span class="icon">🔍</span>
+                <h3>Transparency</h3>
+                <p>We explain exactly what is wrong and how much it costs to fix before we start. No surprises on your invoice.</p>
+            </div>
+            <div class="value-card">
+                <span class="icon">💬</span>
+                <h3>No Jargon</h3>
+                <p>We speak human, not code. We help you understand your device without overwhelming you with technical terms.</p>
+            </div>
+            <div class="value-card">
+                <span class="icon">⚡</span>
+                <h3>Efficiency</h3>
+                <p>We respect your time. Our diagnostic tools and repair processes are designed to get you back online fast.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Experience the difference.</h2>
+        <p>Whether it's a cracked screen or a complex network, we're here to help.</p>
+        <a href="mailto:nelsoncomputer1@gmail.com" class="btn">Get in Touch</a>
+        <br><br>
+        <p style="font-size: 14px; color: #86868b;">Or call us at (804) 601-6123</p>
+    </section>
+
     <footer>
-        <p>Copyright © 2024 RVA Mac. All rights reserved.</p>
-        <p style="margin-top: 10px;">
-            <a href="index.html">Home</a> &nbsp;|&nbsp; 
-            <a href="privacy.html">Privacy</a> &nbsp;|&nbsp; 
-            <a href="terms.html">Terms</a>
+        <p>Copyright © 2024 Nelson Computers, LLC. All rights reserved.</p>
+        <p><a href="index.html">Back to Home</a></p>
+        <p>
+            <a href="legal.html#privacy">Privacy Policy</a> | 
+            <a href="legal.html#terms">Terms of Use</a>
         </p>
     </footer>
 
